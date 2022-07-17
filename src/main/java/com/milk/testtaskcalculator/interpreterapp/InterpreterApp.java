@@ -1,5 +1,6 @@
 package com.milk.testtaskcalculator.interpreterapp;
 
+import java.security.spec.ECField;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -10,7 +11,7 @@ public class InterpreterApp {
     public static void main(String[] args) {
         //  1 + 3
         Scanner in = new Scanner(System.in);
-        System.out.print("Input expression type as '(10 + 30)': ");
+        System.out.print("Введите выражение типа - '(10 + 30)': ");
         String str = in.nextLine();
         Context context = new Context();
         Expression expression = context.evaluate(str);
@@ -171,24 +172,17 @@ class AcceptDiffExpressions implements  Expression{
     }
 }
 
-
 class Context {
     int operatorCount = 0;
-    int LeftOperandCount = 0;
-    int RightOperandCount = 0;
-    Expression evaluate(String s) {
-        ++LeftOperandCount;
+
+    Expression evaluate(String s){
         if (operatorCount > 1 ) {
-            throw new RuntimeException("Выражение содержит ольше одного оператора!");
-        }
-        if (LeftOperandCount > 2 || RightOperandCount > 2) {
-            throw new RuntimeException("Операнд содержит больше 2х цифр");
+            throw new RuntimeException("Выражение содержит больше одного оператора!");
         }
         String stringWithoutSpaces = s.strip().toUpperCase().replace(" ", "");
         int position = stringWithoutSpaces.length() - 1;
         while (position > 0) {
             if (Character.isDigit(stringWithoutSpaces.charAt(position))) {
-                RightOperandCount++;
                 position--;
             } else if (!Operand.isOperand(Character.toString(stringWithoutSpaces.charAt(position)))) {
                 throw new RuntimeException("Ошибка ввода");
@@ -204,7 +198,6 @@ class Context {
         return new NumberExpression(result);
     }
 }
-
 
 
 
