@@ -10,6 +10,8 @@ Method takes a string with an arithmetic expression between two numbers and retu
 ### Requirements:
 1. Calculator can perform addition, subtraction, multiplication and division operations with two numbers:  
    `a + b, a - b, a * b, a / b`  
+   > Do not take arithmetic priority of operations, such as `(), *, /`
+   
    **Data is transferred in one line**
 2. Calculator can work with both Arabic (1, 2, 3, 4, 5...) and Roman (I, II, III, IV, V...) numbers  
 3. Calculator should accept numbers as input, no more. At the output, the numbers are not limited in size and can be any.  
